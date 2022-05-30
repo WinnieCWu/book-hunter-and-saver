@@ -26,6 +26,9 @@ const bookSchema = new Schema({
     type: String,
     required: true,
   },
+  forSale: {
+    type: Boolean,
+  }
 });
 
 module.exports = bookSchema;

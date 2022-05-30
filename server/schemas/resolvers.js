@@ -7,15 +7,13 @@ const resolvers = {
       me: async (parent, args, context) => {
         if (context.user) {
 
-        const user = await User.findOne({})
+        const userData = await User.findOne({ _id:context.user._id})
           .select('-__v -password')
-          .populate('savedBooks')
-  
-        // const token = signToken(user);
-            return {user};
+        
+          return userData;
         }
         throw new AuthenticationError('Not logged in');
-      }      
+      } 
     },
     Mutation: {
         loginUser: async (parent, {email,password}) => {
@@ -46,7 +44,7 @@ const resolvers = {
                 const updatedUser = await User.findOneAndUpdate(
       
                   { _id: context.user._id },
-                  { $addToSet: { saveBook: book._id} },
+                  { $addToSet: { saveBook: book} },
                   { new: true, runValidators: true }
                 );
                 return updatedUser; 
@@ -56,7 +54,7 @@ const resolvers = {
         removeBook: async (parent, {bookId}, context) => {
             const updatedUser = await User.findOneAndUpdate(
                 { _id: context.user._id },
-                { $pull: { savedBook: { bookId } } },
+                { $pull: { savedBook: { bookId: bookId } } },
                 { new: true }
               );
               
