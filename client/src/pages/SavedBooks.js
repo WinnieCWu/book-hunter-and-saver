@@ -8,11 +8,11 @@ import Auth from '../utils/auth';
 const SavedBooks = () => {
   const {loading, data} = useQuery(GET_ME)
   const [removeBook, {error}] = useMutation(REMOVE_BOOK)
-  const [updatedUserData, setUpdatedUserData] = useState({});
+  const [userData, setUserData] = useState({});
   // const userData = data?.me || {};
 
   // // use this to determine if `useEffect()` hook needs to run again
-  const updatedUserDataLength = Object.keys(updatedUserData).length;
+  const userDataLength = Object.keys(userData).length;
 
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
@@ -24,11 +24,11 @@ const SavedBooks = () => {
     }
 
     try {
-      const {updatedUserData} = await removeBook({
-        variables:{book:{...bookId}}
+      const {updatedUser} = await removeBook({
+        variables:{bookId}
       });
-
-      setUpdatedUserData(updatedUserData);
+  // upon success, remove book's id from localStorage
+      setUserData(updatedUser);
 
     } catch (e) {
       console.error(e);
@@ -36,7 +36,7 @@ const SavedBooks = () => {
   };
 
   // if data isn't here yet, say so
-  if (!updatedUserDataLength) {
+  if (!userDataLength) {
     return <h2>LOADING...</h2>;
   }
 
@@ -49,12 +49,12 @@ const SavedBooks = () => {
       </Jumbotron>
       <Container>
         <h2>
-          {updatedUserData.savedBooks.length
-            ? `Viewing ${updatedUserData.savedBooks.length} saved ${updatedUserData.savedBooks.length === 1 ? 'book' : 'books'}:`
+          {userData.savedBooks.length
+            ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
             : 'You have no saved books!'}
         </h2>
         <CardColumns>
-          {updatedUserData.savedBooks.map((book) => {
+          {userData.savedBooks.map((book) => {
             return (
               <Card key={book.bookId} border='dark'>
                 {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}

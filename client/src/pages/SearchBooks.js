@@ -4,7 +4,6 @@ import {useMutation} from '@apollo/client';
 import {SAVE_BOOK} from '../utils/mutations';
 import Auth from '../utils/auth';
 import { searchGoogleBooks } from '../utils/API';
-//removed saveBook from above
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 const SearchBooks = () => {
@@ -66,7 +65,6 @@ const SearchBooks = () => {
     }
 
     try {
-    console.log(bookToSave)
       const {data} = await saveBook({
         variables: {book:{...bookToSave}}
       });
