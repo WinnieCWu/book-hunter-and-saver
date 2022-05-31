@@ -8,8 +8,10 @@ My challenge was to refactor the search engine with RESTful API to be a GraphQL 
 Users can start the app by running 'npm run develop' in the root directory.
 
 ## What it Looks Like
+![screenshot](https://user-images.githubusercontent.com/95206117/171286386-a55f1659-b14b-4933-a783-8112dccc25ec.JPG)
 
 ## Links
+Deployed app to Heroku: https://salty-caverns-65252.herokuapp.com/ 
 
 ## Contact 
 Feel free to contact me with any questions or recommendations at winniechn7@gmail.com.
