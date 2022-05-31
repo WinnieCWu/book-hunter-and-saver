@@ -14,7 +14,6 @@ const SavedBooks = () => {
   // // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;
 
-  
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
@@ -26,7 +25,7 @@ const SavedBooks = () => {
 
     try {
       const {updatedUser} = await removeBook({
-        variables:{bookId}
+        variables:{book:{...bookId}}
       });
 
       setUserData(updatedUser);
