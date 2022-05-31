@@ -21,7 +21,7 @@ const LoginForm = (props) => {
 
     try {
       const { data} = await loginUser({
-        variables: {userFormData}
+        variables: {...userFormData}
       });
 
       Auth.login(data.loginUser.token);
@@ -30,11 +30,10 @@ const LoginForm = (props) => {
       // setShowAlert(true);
     }
 
-    // setUserFormData({
-    //   username: '',
-    //   email: '',
-    //   password: '',
-    // });
+    setUserFormData({
+      email: '',
+      password: '',
+    });
   };
 
   return (

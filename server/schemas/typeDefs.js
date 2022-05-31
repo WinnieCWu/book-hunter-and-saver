@@ -11,12 +11,22 @@ const typeDefs = gql`
         forSale: String
     }
 
+    type Book {
+        authors: [String]
+        description: String!
+        bookId: String!
+        image: String
+        link: String
+        title: String!
+        forSale: String
+    }
+
     type User {
         _id: ID
         username: String!
         email: String!
         bookCount: Int
-        savedBooks: [{Book}]            
+        savedBooks: [Book]            
     }
 
     type Auth {
