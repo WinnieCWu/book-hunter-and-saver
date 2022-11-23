@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const GET_ME = gql `
-    {
-        me {
+    query user {
+        user {
             _id
             username
             email
@@ -14,7 +14,6 @@ export const GET_ME = gql `
                 image
                 link
                 title
-                forSale
             }
         }
     }

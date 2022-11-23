@@ -28,7 +28,7 @@ const SavedBooks = () => {
         variables:{bookId}
       });
   // upon success, remove book's id from localStorage
-      setUserData(updatedUser);
+      // setUserData(updatedUser);
 
     } catch (e) {
       console.error(e);

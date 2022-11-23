@@ -7,6 +7,7 @@ const typeDefs = gql`
         bookId: String!
         image: String
         title: String!
+        link: String
     }
 
     type Book {
@@ -15,6 +16,7 @@ const typeDefs = gql`
         bookId: String!
         image: String
         title: String!
+        link: String
     }
 
     type User {
